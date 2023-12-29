@@ -1,0 +1,48 @@
+package edu.pnu.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import edu.pnu.domain.BoardVO;
+
+@RestController
+public class BoardController2 {
+    private List<BoardVO> list;
+
+    // 생성자에서 초기 데이터를 가진 BoardVO 객체 리스트를 생성한다.
+    public BoardController2() {
+        System.out.println("===> BoardController2 생성");
+
+        list = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            BoardVO b = new BoardVO();
+            b.setSeq(i);
+            b.setTitle("title" + i);
+            b.setContent("content" + i);
+            b.setWriter("writer" + i);
+            list.add(b);
+        }
+    }
+
+    // 파라미터로 전달된 seq 값에 해당하는 BoardVO 객체를 반환한다.
+    // 만약 seq가 1보다 작거나 10보다 크면 null을 반환한다.
+    @GetMapping("/getBoard2")
+    public BoardVO getBoard(Integer seq) {
+        // 아이디가 1보다 작거나 10보다 크면 null 리턴
+        if (seq < 1 || seq > 10)
+            return null;
+
+        // list에 저장된 BoardVO 객체에서 seq값이 파라미터 seq와 같은 객체를 리턴한다.
+        // 그러기 위해서는 list를 처음부터 끝까지 순회하면서 같은 데이터가 있는지 검색한다.
+        for (int i = 0; i < 10; i++) {
+            BoardVO b = list.get(i);
+            if (b.getSeq() == seq) {
+                return b;
+            }
+        }
+        return null; // 일치하는 seq가 없을 경우 null을 반환한다.
+    }
+}

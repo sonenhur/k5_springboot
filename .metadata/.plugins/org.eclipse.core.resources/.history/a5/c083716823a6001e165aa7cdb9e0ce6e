@@ -1,0 +1,39 @@
+package edu.pnu.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import edu.pnu.domain.BoardVO;
+
+@RestController
+public class BoardController2 {
+	private List<BoardVO> list;
+
+	public BoardController2() {
+		System.out.println("===> BoardController2 생성");
+
+		list = new ArrayList<>();
+		for (int i = 1; i <= 10; i++) {
+			BoardVO b = new BoardVO();
+			b.setSeq(i);
+			b.setTitle("title" + i);
+			b.setContent("content" + i);
+			b.setWriter("writer" + i);
+			list.add(b);
+		}
+	}
+
+	// localhost:8080/getBoard2?seq=2
+	@GetMapping("/getBoard2")
+	public BoardVO getBoard(Integer seq) {
+		BoardVO boardVO = new BoardVO();
+		boardVO.setSeq(2);
+		boardVO.setTitle("title");
+		boardVO.setWriter("writer");
+		boardVO.setContent("content");
+		return boardVO;
+	}
+}
