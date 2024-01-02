@@ -1,0 +1,9 @@
+package edu.pnu.controller;
+
+import java.util.List;
+
+import edu.pnu.domain.MemberVO;
+
+public class MemberController {
+	private List<MemberVO> list;
+}

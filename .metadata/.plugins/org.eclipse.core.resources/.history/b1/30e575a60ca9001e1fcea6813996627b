@@ -1,0 +1,99 @@
+package edu.pnu.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import edu.pnu.domain.MemberVO;
+
+@RestController
+public class MemberController {
+	private List<MemberVO> list;
+
+	public MemberController() {
+		System.out.println("===> MemberController 생성");
+
+		list = new ArrayList<>();
+		for (int i = 1; i <= 10; i++) {
+			MemberVO m = new MemberVO();
+			m.setId(i);
+			m.setPass("Password : " + i);
+			m.setName("Name : " + i);
+			list.add(m);
+		}
+	}
+
+//	@GetMapping("/member")
+//	public MemberVO getMember(Integer id) {
+//		if (id < 1 || id > 10)
+//			return null;
+//
+//		for (int i = 0; i < list.size(); i++) {
+//			MemberVO m = list.get(i);
+//			if (m.getId() == id) {
+//				return m;
+//			}
+//		}
+//		return null;
+//	}
+//
+//	@GetMapping("/member/{id}")
+//	public MemberVO getMember1(@PathVariable Integer id) {
+//		return getMember(id);
+//	}
+
+	  // Read operation - Retrieve all members
+    @GetMapping("/members")
+    public List<MemberVO> getAllMembers() {
+        return list;
+    }
+
+    // Read operation - Retrieve a specific member by ID
+    @GetMapping("/members/{id}")
+    public MemberVO getMemberById(@PathVariable Integer id) {
+        return getMember(id);
+    }
+
+    private MemberVO getMember(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	// Create operation - Add a new member
+    @PostMapping("/members")
+    public void addMember(@RequestBody MemberVO newMember) {
+        // Assuming you have appropriate validation before adding
+        list.add(newMember);
+    }
+
+    // Update operation - Update an existing member
+    @PutMapping("/members/{id}")
+    public MemberVO updateMember(@PathVariable Integer id, @RequestBody MemberVO updatedMember) {
+        MemberVO existingMember = getMember(id);
+
+        if (existingMember != null) {
+            // Update the existing member's information
+            existingMember.setPass(updatedMember.getPass());
+            existingMember.setName(updatedMember.getName());
+            // You can update other fields as needed
+            return existingMember;
+        } else {
+            // Handle the case where the member with the given ID is not found
+            return null;
+        }
+    }
+
+    // Delete operation - Delete a member by ID
+    @DeleteMapping("/members/{id}")
+    public void deleteMember(@PathVariable Integer id) {
+        list.removeIf(member -> member.getId() == id);
+    }
+}
+}

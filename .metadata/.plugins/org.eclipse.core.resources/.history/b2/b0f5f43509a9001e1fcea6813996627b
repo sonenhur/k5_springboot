@@ -1,0 +1,23 @@
+package edu.pnu.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.pnu.domain.MemberVO;
+
+public class MemberController {
+	private List<MemberVO> list;
+	
+	public MemberController() {
+		System.out.println("==> MemberController 생성");
+
+		list = new ArrayList<>();
+		for (int i = 1; i <= 10; i++) {
+			MemberVO m = new MemberVO();
+			m.setId("Id" + i);
+			m.setPass("Pass" + i);
+			m.setName("Name" + i);
+			list.add(m);
+		}
+	}
+}

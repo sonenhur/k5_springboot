@@ -1,0 +1,17 @@
+package edu.pnu.controller;
+
+import java.util.Date;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class MemberController {
+	private int id;
+	private String pass;
+	private String name;
+	private Date regidate = new Date();
+}

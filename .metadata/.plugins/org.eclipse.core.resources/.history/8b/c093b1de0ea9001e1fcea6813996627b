@@ -1,0 +1,53 @@
+package edu.pnu.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import edu.pnu.domain.MemberVO;
+
+@RestController
+public class MemberController {
+	private List<MemberVO> list;
+
+	public MemberController() {
+		System.out.println("===> MemberController 생성");
+
+		list = new ArrayList<>();
+		for (int i = 1; i <= 10; i++) {
+			MemberVO m = new MemberVO();
+			m.setId(i);
+			m.setPass("Password : " + i);
+			m.setName("Name : " + i);
+			list.add(m);
+		}
+	}
+
+	public MemberVO getMember(Integer id) {
+		for (int i = 0; i < list.size(); i++) {
+			MemberVO m = list.get(i);
+			if (m.getId() == id) {
+				return m;
+			}
+		}
+		return null;
+	}
+
+	@GetMapping("/member")
+	public List<MemberVO> getMembers() {
+		return list;
+	}
+
+	@GetMapping("/member/{id}")
+	public MemberVO getMember(@PathVariable Integer id) {
+		if (id < 1 || id > 10)
+			return null;
+		return getMember(id);
+	}
+
+	@GetMapping("/member")
+	public 
+}
