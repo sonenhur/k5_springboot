@@ -16,7 +16,8 @@ public class MemberService {
 					.id(i)
 					.name("name : " + i)
 					.pass("pass : " + i)
-					.regidate(new Date()).build());
+					.regidate(new Date())
+					.build());
 		}
 	}
 
@@ -48,11 +49,17 @@ public class MemberService {
 		return 1;
 	}
 
-	public int updateMembers(MemberVO memberVO) {
-		if (getMember(memberVO) == null)
-			return 0;
-		memberVO.setName(memberVO.getName());
-		memberVO.setPass(memberVO.getPass());
+	public int updateMembers(MemberVO memVO) {
+		MemberVO m = getMember(memVO);
+		if (m == null)
+		return 0;
+		
+		if (memVO.getName() != null) {
+		m.setName(memVO.getName());
+		}
+		if(memVO.getPass()!= null){
+		m.setPass(memVO.getPass());
+		}
 		return 1;
 	}
 
