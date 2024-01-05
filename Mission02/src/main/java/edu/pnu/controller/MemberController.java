@@ -1,5 +1,6 @@
 package edu.pnu.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;

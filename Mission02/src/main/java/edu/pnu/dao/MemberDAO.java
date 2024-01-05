@@ -26,8 +26,12 @@ public class MemberDAO extends JDBConnect {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM member ORDER BY id ASC");
 			while (rs.next()) {
-				list.add(MemberVO.builder().id(rs.getInt("id")).pass(rs.getString("pass")).name(rs.getString("name"))
-						.regidate(rs.getDate("regidate")).build());
+				list.add(MemberVO.builder()
+						.id(rs.getInt("id"))
+						.pass(rs.getString("pass"))
+						.name(rs.getString("name"))
+						.regidate(rs.getDate("regidate"))
+						.build());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,8 +89,12 @@ public class MemberDAO extends JDBConnect {
 			// id));
 			rs = stmt.executeQuery("SELECT * FROM member WHERE id = " + id);
 			if (rs.next()) {
-				return MemberVO.builder().id(rs.getInt("id")).pass(rs.getString("pass")).name(rs.getString("name"))
-						.regidate(rs.getDate("regidate")).build();
+				return MemberVO.builder()
+						.id(rs.getInt("id"))
+						.pass(rs.getString("pass"))
+						.name(rs.getString("name"))
+						.regidate(rs.getDate("regidate"))
+						.build();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,9 +123,9 @@ public class MemberDAO extends JDBConnect {
 	public int addMember(MemberVO memberVO) {
 		if (getMember(memberVO) != null)
 			return 0;
+		
 		PreparedStatement psmt = null;
 		String query = "INSERT INTO member (id, pass, name) VALUES (?, ?, ?);";
-
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setInt(1, memberVO.getId());
@@ -138,28 +146,60 @@ public class MemberDAO extends JDBConnect {
 		return 0;
 	}
 
+//	public int updateMembers(MemberVO memberVO) throws SQLException {
+//
+//		PreparedStatement psmt = null;
+//		if (memberVO.getName() != null && memberVO.getPass() != null) {
+//			String query = "UPDATE member SET name = ? , pass = ? WHERE id = ?";
+//			psmt = con.prepareStatement(query);
+//			psmt.setString(1, memberVO.getName());
+//			psmt.setString(2, memberVO.getPass());
+//			psmt.setInt(3, memberVO.getId());
+//			return psmt.executeUpdate();
+//		}
+//		if (memberVO.getName() != null) {
+//			String query = "UPDATE member SET name = ? WHERE id = ?";
+//			psmt = con.prepareStatement(query);
+//			psmt.setString(1, memberVO.getName());
+//			psmt.setInt(2, memberVO.getId());
+//			return psmt.executeUpdate();
+//		}
+//		if (memberVO.getPass() != null) {
+//			String query = "UPDATE member SET pass = ? WHERE id = ?";
+//			psmt = con.prepareStatement(query);
+//			psmt.setString(1, memberVO.getPass());
+//			psmt.setInt(2, memberVO.getId());
+//			return psmt.executeUpdate();
+//		}
+//		return 1;
+//	}
+	
 	public int updateMembers(MemberVO memberVO) {
-		PreparedStatement psmt = null;
-		String query = "UPDATE member SET pass = ?, name = ? WHERE id = ?";
-		try {
-			psmt = con.prepareStatement(query);
-			psmt.setString(1, memberVO.getPass());
-			psmt.setString(2, memberVO.getName());
-			psmt.setInt(3, memberVO.getId());
-			return psmt.executeUpdate();
+	    Statement stmt = null;
+	    String query = "UPDATE member SET";
+	    String query1 = null;
+	    if (memberVO.getName() == null && memberVO.getPass() == null)	return 0;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (psmt != null)
-					psmt.close();
 
-			} catch (Exception e) {
+	    if (memberVO.getName() != null)	query1 += (" name='" + memberVO.getName() + "'");
+	    if (query1 != null) query1 += ",";
+	    if (memberVO.getPass() != null)	query1 += (" pass='" + memberVO.getPass() + "'");
+	    
+	    query = query + (query1 + " where id=" + memberVO.getId());
+	    
+	    try {
+	        stmt = con.createStatement();
+	        return stmt.executeUpdate(query);
+	    } catch(Exception e) {
+	    } finally {
+            try {
+            	if (stmt != null)	stmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		return 0;
+        }
+	    return 0;
 	}
 
 	public int removeMember(Integer id) {

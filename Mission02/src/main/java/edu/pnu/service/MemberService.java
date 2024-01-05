@@ -1,5 +1,6 @@
 package edu.pnu.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import edu.pnu.dao.MemberDAO;
