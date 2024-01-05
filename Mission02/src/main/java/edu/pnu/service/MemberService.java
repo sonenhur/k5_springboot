@@ -1,6 +1,5 @@
 package edu.pnu.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.pnu.dao.MemberDAO;
@@ -16,16 +15,6 @@ public class MemberService {
 
 	public MemberVO getMember(Integer id) {
 		return m.getMember(id);
-	}
-
-	// 특정 회원 데이터가 존재하는지 확인
-	private MemberVO getMember(MemberVO memberVO) {
-		List<MemberVO> list = new ArrayList<>();
-		for (MemberVO m : list) {
-			if (m.getId() == memberVO.getId())
-				return m;
-		}
-		return null;
 	}
 
 	public int addMember(MemberVO memberVO) {
