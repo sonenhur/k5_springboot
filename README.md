@@ -1,7 +1,7 @@
 # @Autowired
 Spring은 IoC (Inversion of Control) 컨테이너를 제공하여 객체 간의 의존성을 관리하는데, @Autowired 어노테이션은 이러한 의존성 주입을 간편하게 처리할 수 있도록 도와줍니다.
 ```java
-**public** **class** MemberServiceTest {
+public class MemberServiceTest {
   @Autowired
   **private** MemberService memberService;
   }
