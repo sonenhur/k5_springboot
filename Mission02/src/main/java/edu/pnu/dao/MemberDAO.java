@@ -48,38 +48,6 @@ public class MemberDAO extends JDBConnect {
 		return list;
 	}
 
-//	public MemberVO getMember(Integer id) {
-//
-//		PreparedStatement psmt = null;
-//		ResultSet rs = null;
-//		String query = "SELECT * FROM member WHERE id = ?";
-//		try {
-//			psmt = con.prepareStatement(query);
-//			psmt.setInt(1, id);
-//			rs = psmt.executeQuery();
-//			if (rs.next()) {
-//				
-//				return MemberVO.builder()
-//						.id(rs.getInt("id"))
-//						.pass(rs.getString("pass"))
-//						.name(rs.getString("name"))
-//						.regidate(rs.getDate("regidate"))
-//						.build();
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (psmt != null)
-//					psmt.close();
-//				if (rs != null)
-//					rs.close();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return null;
-//	}
 	public MemberVO getMember(Integer id) {
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -146,34 +114,6 @@ public class MemberDAO extends JDBConnect {
 		return 0;
 	}
 
-//	public int updateMembers(MemberVO memberVO) throws SQLException {
-//
-//		PreparedStatement psmt = null;
-//		if (memberVO.getName() != null && memberVO.getPass() != null) {
-//			String query = "UPDATE member SET name = ? , pass = ? WHERE id = ?";
-//			psmt = con.prepareStatement(query);
-//			psmt.setString(1, memberVO.getName());
-//			psmt.setString(2, memberVO.getPass());
-//			psmt.setInt(3, memberVO.getId());
-//			return psmt.executeUpdate();
-//		}
-//		if (memberVO.getName() != null) {
-//			String query = "UPDATE member SET name = ? WHERE id = ?";
-//			psmt = con.prepareStatement(query);
-//			psmt.setString(1, memberVO.getName());
-//			psmt.setInt(2, memberVO.getId());
-//			return psmt.executeUpdate();
-//		}
-//		if (memberVO.getPass() != null) {
-//			String query = "UPDATE member SET pass = ? WHERE id = ?";
-//			psmt = con.prepareStatement(query);
-//			psmt.setString(1, memberVO.getPass());
-//			psmt.setInt(2, memberVO.getId());
-//			return psmt.executeUpdate();
-//		}
-//		return 1;
-//	}
-	
 	public int updateMembers(MemberVO memberVO) {
 	    Statement stmt = null;
 	    String query = "UPDATE member SET";
@@ -191,6 +131,7 @@ public class MemberDAO extends JDBConnect {
 	        stmt = con.createStatement();
 	        return stmt.executeUpdate(query);
 	    } catch(Exception e) {
+	    	e.printStackTrace();
 	    } finally {
             try {
             	if (stmt != null)	stmt.close();
