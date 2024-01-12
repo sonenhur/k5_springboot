@@ -28,14 +28,14 @@ public class BoardRepositoryTest2 {
 	@Test
 	@Order(1)
 	public void testInsertBoard() {
-		for (int i = 0; i < 101; i++) {
+		for (int i = 0; i < 200; i++) {
 			Board board = new Board();
 			Random rand = new Random();
 			board.setTitle(i + "번째 게시글");
 			board.setWriter("테스터");
 			board.setContent("잘 등록되나요? " + i);
 			board.setCreateDate(new Date());
-			board.setCnt((long) rand.nextInt(101));
+			board.setCnt((long) rand.nextInt(200));
 			boardRepo.save(board);
 		}
 	}
