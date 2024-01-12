@@ -60,7 +60,6 @@ public class BoardRepositoryTest2 {
 		System.out.println("hasContent: " + page.hasContent());
 		System.out.println("getSort: " + page.getSort());
 		
-		List<Board> list = boardRepo.findByTitleContaining("1");
 		for (Board b : page)
 		System.out.println(b);
 	}

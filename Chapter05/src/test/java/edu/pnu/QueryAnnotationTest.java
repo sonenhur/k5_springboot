@@ -22,7 +22,6 @@ import edu.pnu.persistence.BoardRepository;
 @TestMethodOrder(OrderAnnotation.class)
 
 public class QueryAnnotationTest {
-	
 	@Autowired
 	private BoardRepository boardRepo;
 	
@@ -58,8 +57,8 @@ public class QueryAnnotationTest {
 		System.out.println("검색 결과");
 		for (Object[] row : boardList) {
 			System.out.println("===> " + Arrays.toString(row));
+			}
 		}
-	}
 	
 	@Test
 	@Order(3)
