@@ -20,7 +20,10 @@ public class MemberService {
 	}
 
 	public Member getMemberById(Long id) {
+//		return memberRepository.findById(id).orElse(null);
+		
 		Optional<Member> opt = memberRepository.findById(id);
+//		Optional<Member> : Java에서 Null 포인터 예외를 방지하고 코드를 명시적으로 처리하기 위한 클래스
 		if (opt.isPresent()) {
 			return opt.get();
 		}
@@ -38,5 +41,9 @@ public class MemberService {
 			return 0;
 		}
 		return 1L;
+	}
+
+	public Member updateMember(Member member) {
+		return memberRepository.save(member);
 	}
 }
