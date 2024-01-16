@@ -1,6 +1,7 @@
 package edu.pnu.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,22 +12,31 @@ import edu.pnu.persistence.MemberRepository;
 @Service
 public class MemberService {
 
-    @Autowired
-    private MemberRepository memberRepository;
+	@Autowired
+	private MemberRepository memberRepository;
 
-    public List<Member> getAllMembers() {
-        return memberRepository.findAll();
-    }
+	public List<Member> getAllMembers() {
+		return memberRepository.findAll();
+	}
 
-    public Member getMemberById(Long id) {
-        return memberRepository.findById(id).get();
-    }
+	public Member getMemberById(Long id) {
+		Optional<Member> opt = memberRepository.findById(id);
+		if (opt.isPresent()) {
+			return opt.get();
+		}
+		return null;
+	}
 
-    public Member saveMember(Member member) {
-        return memberRepository.save(member);
-    }
+	public Member addMember(Member member) {
+		return memberRepository.save(member);
+	}
 
-    public void deleteMember(Long id) {
-        memberRepository.deleteById(id);
-    }
+	public long removeMember(Long id) {
+		try {
+			memberRepository.deleteById(id);
+		} catch (Exception e) {
+			return 0;
+		}
+		return 1L;
+	}
 }

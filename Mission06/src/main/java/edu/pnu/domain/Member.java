@@ -24,5 +24,6 @@ public class Member {
 	private Long id;
 	private String password;
 	private String name;
-	private String role;
+	@Builder.Default
+	private String role="user";
 }
