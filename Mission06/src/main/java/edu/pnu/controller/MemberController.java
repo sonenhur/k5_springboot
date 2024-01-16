@@ -15,7 +15,6 @@ import jakarta.annotation.PostConstruct;
 @RestController
 public class MemberController {
 	
-	
 	@Autowired
 	private MemberService memberService;
 	
