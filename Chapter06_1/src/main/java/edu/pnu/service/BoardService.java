@@ -22,4 +22,19 @@ public class BoardService {
 		return boardRepository.findById(seq).get();
 	}
 
+	public Board insertBoard(Board board) {
+		return boardRepository.save(board);
+	}
+
+	public Board updateBoard(Board board) {
+		Board findBoard = boardRepository.findById(board.getSeq()).get();
+		findBoard.setTitle(board.getTitle());
+		findBoard.setContent(board.getContent());
+		return boardRepository.save(findBoard);
+	}
+
+	public Board deleteBoard(Board board) {
+		boardRepository.deleteById(board.getSeq());
+		return board;
+	}
 }
