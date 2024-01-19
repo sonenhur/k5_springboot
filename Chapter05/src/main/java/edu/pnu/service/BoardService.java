@@ -27,12 +27,10 @@ public class BoardService {
     }
 
 	public Page<Board> findByTitleContaining(String keyword, Pageable pageable) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public Page<Board> findByCntGreaterThan(Long cnt, Pageable pageable) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
