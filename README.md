@@ -1,5 +1,5 @@
 # Spring IoC와 @Autowired 어노테이션
-Spring은 IoC (Inversion of Control) 컨테이너로 객체 간의 의존성을 관리한다.  
+Spring은 'IoC 컨테이너'로 객체 간의 의존성을 관리한다.  
 이를 편리하게 처리하기 위해 @Autowired 어노테이션을 제공한다.  
 
 ```java
