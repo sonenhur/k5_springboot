@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SpringbootAuth2</title>
+</head>
+<body th:align="center">
+<h2>로그인</h2>
+<form action="/login" method="POST">
+    <table border="1" th:align="center" th:cellpadding="0">
+    </table>
+</form>
+<a href="http://localhost:8080/oauth2/authorization/google">구글 로그인</a>
+<a href="http://localhost:8080/oauth2/authorization/naver">네이버 로그인</a>
+<a href="http://localhost:8080/oauth2/authorization/kakao">카카오 로그인</a>
+
+</body>
+</html>
