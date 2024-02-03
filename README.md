@@ -55,4 +55,5 @@ public class MyController {
     // 클래스 내용
 }
 ```
+  
 어노테이션은 코드를 논리적으로 그룹화하고, Spring IoC 컨테이너에서 빈으로 등록되어 관리되도록 돕는다.  
